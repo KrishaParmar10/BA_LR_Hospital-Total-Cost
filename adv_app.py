@@ -3,7 +3,7 @@ import pickle
 import numpy as np 
 
 # Load the saved model 
-model = pickle.load(open('linear_reg.sav', 'rb')) 
+model = pickle.load(open('lr.sav', 'rb')) 
 st.title('Hospital Total Cost Prediction App') 
 
 # Input features 
@@ -19,4 +19,5 @@ COST_OF_IMPLANT = st.number_input('COST_OF_IMPLANT', min_value=0.0)
 if st.button('Predict Hospital Total Cost'): 
     input_data = np.array([[TOTAL_AMOUNT_BILLED_TO_THE_PATIENT, CONCESSION, ACTUAL_RECEIVABLE_AMOUNT, TOTAL_LENGTH_OF_STAY, LENGTH_OF_STAY_ICU, LENGTH_OF_STAY_WARD, COST_OF_IMPLANT]]) 
     prediction = model.predict(input_data)[0] 
+
     st.success(f'Predicted Hospital Cost: {prediction:.2f}')
